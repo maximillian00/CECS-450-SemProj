@@ -1,2 +1,2 @@
-# CECS-457-SemProj
-Semester Project for CECS 457 Data Visualization
+# CECS-450-SemProj
+Semester Project for CECS 450 Data Visualization
