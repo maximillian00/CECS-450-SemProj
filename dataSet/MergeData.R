@@ -11,8 +11,12 @@ decimal_list <- lapply(decimal_list, function(x) as.numeric(x))
 print(decimal_list)
 
 score <- dt$RottenTomatoes
+decimal_list <- lapply(score, function(x) eval(parse(text = x)))
+decimal_list <- lapply(decimal_list, function(x) as.numeric(x))
+print(decimal_list)
 
-avg <- lapply(score, mean, na.rm = TRUE)
+avg <- mean(unlist(decimal_list))
+print(avg)
 
 
 boxplot(avg ~ Netflix, data = dt,
