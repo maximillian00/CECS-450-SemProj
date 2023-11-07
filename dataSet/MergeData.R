@@ -18,8 +18,12 @@ print(decimal_list)
 avg <- mean(unlist(decimal_list))
 print(avg)
 
+net <- unique(dt$Netflix)
 
-boxplot(avg ~ Netflix, data = dt,
+data <- data.frame(Average = avg, Netflix = net)
+
+
+boxplot(data,
         main = "Average score for Netflix",
         xlab = "Netflix",
         ylab = "Average Rotten Tomatoe score" 
