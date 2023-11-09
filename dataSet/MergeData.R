@@ -2,7 +2,10 @@
 dt <- read.csv("~/GitHub/CECS-450-SemProj/dataSet/movies_and_tv - Sheet1.csv")
 
 #dt$group <- (mean(RottenTomatoes))
+<<<<<<< HEAD
 #comment
+=======
+>>>>>>> acbf5d96d59eb119a81d4d0dd14bb3c3adc0dc74
 
 # random testing
 temp <- c(80/100, 100/100)
