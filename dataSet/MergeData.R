@@ -25,11 +25,12 @@ print(decimal_list)
 avg <- mean(unlist(decimal_list))
 print(avg)
 ###############################
-
+Netflix <-
 
 # Plots Netflix average Rotten Tomato score for show and movies
 # 0 is another streaming service and 1 is Netflix's score
-boxplot(decimal_list ~ dt$Netflix + dt$Hulu + dt$PrimeVideo + dt$Disney,
+boxplot(decimal_list ~ dt$[Netflix==1] + dt$Hulu + dt$PrimeVideo + dt$Disney,
+        names = c("Netflix", "Hulu", "Prime", "Disney"),
         main = "Average score for Netflix V.S. Other Streaming Platforms",
         xlab = "streaming services",
         ylab = "Average score" 
