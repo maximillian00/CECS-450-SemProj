@@ -3,6 +3,8 @@ dt <- read.csv("~/GitHub/CECS-450-SemProj/dataSet/movies_and_tv - Sheet1.csv")
 
 #dt$group <- (mean(RottenTomatoes))
 
+
+
 # random testing
 temp <- c(80/100, 100/100)
 print(temp)
@@ -27,9 +29,9 @@ print(avg)
 
 # Plots Netflix average Rotten Tomato score for show and movies
 # 0 is another streaming service and 1 is Netflix's score
-boxplot(decimal_list ~ dt$Netflix,
+boxplot(decimal_list ~ dt$Netflix + dt$Hulu + dt$PrimeVideo + dt$Disney,
         main = "Average score for Netflix V.S. Other Streaming Platforms",
-        xlab = "Netflix",
+        xlab = "streaming services",
         ylab = "Average score" 
         )
 
