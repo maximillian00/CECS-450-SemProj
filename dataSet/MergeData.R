@@ -61,6 +61,22 @@ boxplot(decimal_list ~ dt$PrimeVideo,
         xlab = "streaming services",
         ylab = "Average score" 
 )
+boxplot(unlist(RottenTomatoes) ~ stack(Netflix + PrimeVideo + Disney + Hulu) , data = dt,
+        main = "Rotten Tomatoes Score for Streaming Platforms",
+        xlab = "Streaming Services",
+        ylab = "Rotten Tomatoes Score"
+)
+
+
+# Subset data where Netflix, Hulu, Disney, or PrimeVideo is 1
+subset_data <- dt[dt$Netflix == 1 | dt$Hulu == 1 | dt$Disney == 1 | dt$PrimeVideo == 1, ]
+
+# Create a boxplot
+boxplot(unlist(RottenTomatoes) ~ interaction(Netflix, Hulu, Disney, PrimeVideo), data = subset_data,
+        main = "Rotten Tomatoes Score for Streaming Platforms (when value is 1)",
+        xlab = "Streaming Services",
+        ylab = "Rotten Tomatoes Score"
+)
 
 
 #Plots average score shows and movies on Netflix
