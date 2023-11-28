@@ -1,4 +1,4 @@
-,ID,Title,Year,Age,Rotten Tomatoes,Netflix,Hulu,Prime Video,Disney+,Type
+,ID,Title,Year,Age,RottenTomatoes,Netflix,Hulu,PrimeVideo,Disney,Type
 0,1,The Irishman,2019,18+,98/100,1,0,0,0,0
 1,2,Dangal,2016,7+,97/100,1,0,0,0,0
 2,3,David Attenborough: A Life on Our Planet,2020,7+,95/100,1,0,0,0,0
