@@ -86,4 +86,15 @@ boxplot(decimal_list ~ dt$Type,
         xlab = "Netflix",
         ylab = "Average score" 
 )
+labels = c("Prime","Netflix", "Hulu", "Disney")
+amount_on_netflix <- mean(dt$Netflix, na.rm =TRUE)
+amount_on_prime <- mean(dt$PrimeVideo, na.rm =TRUE)
+amount_on_hulu<- mean(dt$Hulu, na.rm =TRUE)
+amount_on_dis <- mean(dt$Disney, na.rm = TRUE)
+percentages <- round((list_of_avgs/sum(list_of_avgs))*100,1)
+
+list_of_avgs <-c(amount_on_prime, amount_on_netflix, amount_on_hulu, amount_on_dis)
+
+pie(list_of_avgs, labels = paste(labels, "\n", percentages, "%"), main = "Streaming Service with the Most Titles", col = rainbow(length(list_of_avgs)))
+
 
