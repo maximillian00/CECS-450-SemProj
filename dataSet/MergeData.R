@@ -8,13 +8,23 @@ movie <- read.csv("~/GitHub/CECS-450-SemProj/dataSet/MoviesOnStreamingPlatforms.
 
 ####################
 
-score <- dt$RottenTomatoes #gets column of Rotten Tomatoe from dataset
 
 #converts char column to double
+score <- dt$RottenTomatoes #gets column of Rotten Tomatoe from dataset
 decimal_list <- lapply(score, function(x) eval(parse(text = x))) 
 dt$RottenTomatoes <- lapply(decimal_list, function(x) as.numeric(x))
-###################################
 
+
+score <- show$RottenTomatoes #gets column of Rotten Tomatoe from dataset
+decimal_list <- lapply(score, function(x) eval(parse(text = x))) 
+show$RottenTomatoes <- lapply(decimal_list, function(x) as.numeric(x))
+
+
+score <- movie$RottenTomatoes #gets column of Rotten Tomatoe from dataset
+decimal_list <- lapply(score, function(x) eval(parse(text = x))) 
+movie$RottenTomatoes <- lapply(decimal_list, function(x) as.numeric(x))
+
+###################################
 
 decimal_list <- unlist(decimal_list) #converts column to list (2d array -> array)
 print(decimal_list)
