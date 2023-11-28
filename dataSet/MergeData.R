@@ -1,13 +1,11 @@
 library(dplyr)
 dt <- read.csv("~/GitHub/CECS-450-SemProj/dataSet/movies_and_tv - Sheet1.csv")
+show <- read.csv("~/GitHub/CECS-450-SemProj/dataSet/tv_shows.csv")
+movie <- read.csv("~/GitHub/CECS-450-SemProj/dataSet/MoviesOnStreamingPlatforms.csv")
 
 #dt$group <- (mean(RottenTomatoes))
 
 
-
-# random testing
-temp <- c(80/100, 100/100)
-print(temp)
 ####################
 
 score <- dt$RottenTomatoes #gets column of Rotten Tomatoe from dataset
@@ -61,29 +59,59 @@ boxplot(decimal_list ~ dt$PrimeVideo,
         xlab = "streaming services",
         ylab = "Average score" 
 )
-boxplot(unlist(RottenTomatoes) ~ stack(Netflix + PrimeVideo + Disney + Hulu) , data = dt,
-        main = "Rotten Tomatoes Score for Streaming Platforms",
-        xlab = "Streaming Services",
-        ylab = "Rotten Tomatoes Score"
+
+boxplot(unlist(RottenTomatoes) ~ Netflix + PrimeVideo + Disney + Hulu, data = dt,
+        names = c("Other","Netflix", "Other", "Disney", "", ""),
+        main = "Average score for Netflix V.S. Other Streaming Platforms",
+        xlab = "streaming services",
+        ylab = "Average score" 
 )
 
-
-# Subset data where Netflix, Hulu, Disney, or PrimeVideo is 1
-subset_data <- dt[dt$Netflix == 1 | dt$Hulu == 1 | dt$Disney == 1 | dt$PrimeVideo == 1, ]
-
-# Create a boxplot
-boxplot(unlist(RottenTomatoes) ~ interaction(Netflix, Hulu, Disney, PrimeVideo), data = subset_data,
-        main = "Rotten Tomatoes Score for Streaming Platforms (when value is 1)",
-        xlab = "Streaming Services",
-        ylab = "Rotten Tomatoes Score"
-)
 
 
 #Plots average score shows and movies on Netflix
-# 0 is movies and 1 is shows
-boxplot(decimal_list ~ dt$Type,
+# 0 is movies and 1 is shows 
+boxplot(unlist(RottenTomatoes) ~ Type, data = net,
+        names = c("Movie","Show"),
         main = "Show V.S. Movies Average Score on Netflix",
         xlab = "Netflix",
+        ylab = "Average score" 
+)
+
+
+#Plots average score shows and movies on Disney
+# 0 is movies and 1 is shows 
+
+dis <- dplyr::filter(dt,Disney == 1)
+
+boxplot(unlist(RottenTomatoes) ~ Type, data = dis,
+        names = c("Movie","Show"),
+        main = "Show V.S. Movies Average Score on Disney",
+        xlab = "Disney+",
+        ylab = "Average score" 
+)
+
+
+#Plots average score shows and movies on Hulu
+# 0 is movies and 1 is shows 
+hulu <- dplyr::filter(dt,Hulu == 1)
+
+boxplot(unlist(RottenTomatoes) ~ Type, data = hulu,
+        names = c("Movie","Show"),
+        main = "Show V.S. Movies Average Score on Hulu",
+        xlab = "Hulu",
+        ylab = "Average score" 
+)
+
+#Plots average score shows and movies on Prime Video
+# 0 is movies and 1 is shows 
+prime <- dplyr::filter(dt,PrimeVideo == 1)
+
+
+boxplot(unlist(RottenTomatoes) ~ Type, data = prime,
+        names = c("Movie","Show"),
+        main = "Show V.S. Movies Average Score on Prime Video",
+        xlab = "Prime Video",
         ylab = "Average score" 
 )
 
