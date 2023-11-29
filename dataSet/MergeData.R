@@ -24,21 +24,14 @@ score <- movie$RottenTomatoes #gets column of Rotten Tomatoe from dataset
 decimal_list <- lapply(score, function(x) eval(parse(text = x))) 
 movie$RottenTomatoes <- lapply(decimal_list, function(x) as.numeric(x))
 
-###################################
 
-decimal_list <- unlist(decimal_list) #converts column to list (2d array -> array)
-print(decimal_list)
 
-# More random testing
-avg <- mean(unlist(decimal_list))
-print(avg)
-###############################
 
+#########################################
 # Plots Netflix average Rotten Tomato score for show and movies
 # 0 is another streaming service and 1 is Netflix's score
-net <- dplyr::filter(dt,Netflix == 1)
 
-boxplot(decimal_list ~ dt$Netflix,
+boxplot(unlist(RottenTomatoes) ~ Netflix,data = dt,
         names = c("Other","Netflix"),
         main = "Average score for Netflix V.S. Other Streaming Platforms",
         xlab = "streaming services",
@@ -47,7 +40,7 @@ boxplot(decimal_list ~ dt$Netflix,
 
 # Plots Disney average Rotten Tomato score for show and movies
 # 0 is another streaming service and 1 is Disney's score
-boxplot(decimal_list ~ dt$Disney,
+boxplot(unlist(RottenTomatoes) ~ dt$Disney, data = dt,
         names = c("Other","Disney"),
         main = "Average score for Netflix V.S. Other Streaming Platforms",
         xlab = "streaming services",
@@ -55,7 +48,7 @@ boxplot(decimal_list ~ dt$Disney,
 )
 # Plots Hulu average Rotten Tomato score for show and movies
 # 0 is another streaming service and 1 is Hulu's score
-boxplot(decimal_list ~ dt$Hulu,
+boxplot(unlist(RottenTomatoes) ~ dt$Hulu, data = dt,
         names = c("Other", "Hulu"),
         main = "Average score for Netflix V.S. Other Streaming Platforms",
         xlab = "streaming services",
@@ -63,24 +56,20 @@ boxplot(decimal_list ~ dt$Hulu,
 )
 # Plots Prime average Rotten Tomato score for show and movies
 # 0 is another streaming service and 1 is Prime's score
-boxplot(decimal_list ~ dt$PrimeVideo,
+boxplot(unlist(RottenTomatoes) ~ dt$PrimeVideo, data = dt,
         names = c("Other", "Prime"),
         main = "Average score for Netflix V.S. Other Streaming Platforms",
         xlab = "streaming services",
         ylab = "Average score" 
 )
 
-boxplot(unlist(RottenTomatoes) ~ Netflix + PrimeVideo + Disney + Hulu, data = dt,
-        names = c("Other","Netflix", "Other", "Disney", "", ""),
-        main = "Average score for Netflix V.S. Other Streaming Platforms",
-        xlab = "streaming services",
-        ylab = "Average score" 
-)
 
 
 
 #Plots average score shows and movies on Netflix
 # 0 is movies and 1 is shows 
+net <- dplyr::filter(dt,Netflix == 1)
+
 boxplot(unlist(RottenTomatoes) ~ Type, data = net,
         names = c("Movie","Show"),
         main = "Show V.S. Movies Average Score on Netflix",
@@ -124,4 +113,59 @@ boxplot(unlist(RottenTomatoes) ~ Type, data = prime,
         xlab = "Prime Video",
         ylab = "Average score" 
 )
+
+
+
+
+#
+
+
+
+
+dt$StreamingService <- ifelse(dt$Netflix == 1, "Netflix",
+                              ifelse(dt$Hulu == 1, "Hulu",
+                                     ifelse(dt$Disney == 1, "Disney",
+                                            ifelse(dt$PrimeVideo == 1, "PrimeVideo", "Other"))))
+
+# Create a boxplot for each platform
+
+
+#boxplot(unlist(RottenTomatoes) ~ Netflix, data = net, col = "blue",at = 1, width = 0.2, main = "Rotten Tomatoes Scores for Streaming Services (Value = 1)", ylab = "Rotten Tomatoes Score")
+#boxplot(unlist(RottenTomatoes) ~ Hulu, data = hulu, col = "red",at = 1.75, width = 0.2, add = TRUE)
+#boxplot(unlist(RottenTomatoes) ~ Disney, data = dis, col = "green",at = 2.5, width = 0.2, add = TRUE)
+#boxplot(unlist(RottenTomatoes) ~ PrimeVideo, data = prime, col = "purple", at = 3.5, width = 0.2, add = TRUE)
+#legend("topright", legend = c("Netflix", "Hulu", "Disney", "Prime"), fill = c("blue", "red", "green", "purple"))
+#pdf("boxplot.pdf", width = 10, height = 6)
+##################################
+
+#Get the length of titles in each streaming platform
+n <- as.numeric(length(unlist(net$RottenTomatoes))) #netflix
+h <- as.numeric(length(unlist(hulu$RottenTomatoes))) #hulu
+d <- as.numeric(length(unlist(dis$RottenTomatoes))) #disney
+p <- as.numeric(length(unlist(prime$RottenTomatoes))) #prime video
+
+combined_data <- data.frame(
+  RottenTomatoes = c(unlist(net$RottenTomatoes), unlist(hulu$RottenTomatoes), 
+                     unlist(dis$RottenTomatoes), unlist(prime$RottenTomatoes)),
+  StreamingService = rep(c("Netflix", "Hulu", "Disney", "Prime"),
+                         times = c(n,h,d,p))
+)
+
+
+
+
+
+
+# Create side-by-side boxplots for each streaming service
+#will show the average score of the streaming service
+boxplot(RottenTomatoes ~ StreamingService, data = combined_data,
+        col = c("blue", "red", "green", "purple"),
+        main = "Average Rotten Tomatoes Score for Streaming Services",
+        ylab = "Rotten Tomatoes Score",
+        par(mar = c(5, 4, 4, 8)))  # Adjust the margin if needed
+
+
+
+
+
 
