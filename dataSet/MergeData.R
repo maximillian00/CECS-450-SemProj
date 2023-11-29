@@ -152,20 +152,13 @@ combined_data <- data.frame(
 )
 
 
-
-
-
-
 # Create side-by-side boxplots for each streaming service
 #will show the average score of the streaming service
 boxplot(RottenTomatoes ~ StreamingService, data = combined_data,
         col = c("blue", "red", "green", "purple"),
-        main = "Average Rotten Tomatoes Score for Streaming Services",
-        ylab = "Rotten Tomatoes Score",
-        par(mar = c(5, 4, 4, 8)))  # Adjust the margin if needed
-
-
-
+        main = "Rotten Tomatoes Scores for Streaming Services",
+        ylab = "Rotten Tomatoes Score")
+axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 
 
 
