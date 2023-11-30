@@ -249,7 +249,14 @@ boxplot(RottenTomatoes ~ StreamingService, data = movie,
 #Adds labels on y axis
 axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 
+
+
+
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
 #Best AVG SCORE for Age category for Movies/Shows to watch are 13+
 boxplot(unlist(RottenTomatoes) ~ Age, data = dt,
         col = c("blue", "green", "red", "purple"),
@@ -270,20 +277,116 @@ hulu13 <- dplyr::filter(hulu,Age == "13+") # Hulu shows
 dis13 <- dplyr::filter(dis,Age == "13+") # Disney shows
 prime13 <- dplyr::filter(prime,Age == "13+") #Prime shows
 
+n13 <- as.numeric(length(unlist(net13$RottenTomatoes))) #netflix
+h13 <- as.numeric(length(unlist(hulu13$RottenTomatoes))) #hulu
+d13 <- as.numeric(length(unlist(dis13$RottenTomatoes))) #disney
+p13 <- as.numeric(length(unlist(prime13$RottenTomatoes))) #prime video
+
+combine13 <- data.frame(
+  RottenTomatoes = c(unlist(net13$RottenTomatoes), unlist(hulu13$RottenTomatoes), 
+                     unlist(dis13$RottenTomatoes), unlist(prime13$RottenTomatoes)),
+  StreamingService = rep(c("Netflix", "Hulu", "Disney", "Prime"),
+                         times = c(n13,h13,d13,p13)))
+  
+boxplot(RottenTomatoes ~ StreamingService, data = combine13,
+        col = c("blue", "green", "red", "purple"),
+        main = "Rotten Tomatoes Scores for Age 13+ (Movies and Shows)",
+        ylab = "Rotten Tomatoes Score",
+        par(bg = "#FFF8C1")
+        
+)
+#Adds labels on y axis
+axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
+  
+##############################################
+#16+
+
+
 net16 <- dplyr::filter(net,Age == "16+") #Netflix shows
 hulu16 <- dplyr::filter(hulu,Age == "16+") # Hulu shows
 dis16 <- dplyr::filter(dis,Age == "16+") # Disney shows
 prime16 <- dplyr::filter(prime,Age == "16+") #Prime shows
 
+n16 <- as.numeric(length(unlist(net16$RottenTomatoes))) #netflix
+h16 <- as.numeric(length(unlist(hulu16$RottenTomatoes))) #hulu
+d16 <- as.numeric(length(unlist(dis16$RottenTomatoes))) #disney
+p16 <- as.numeric(length(unlist(prime16$RottenTomatoes))) #prime video
+
+combine16 <- data.frame(
+  RottenTomatoes = c(unlist(net16$RottenTomatoes), unlist(hulu16$RottenTomatoes), 
+                     unlist(dis16$RottenTomatoes), unlist(prime16$RottenTomatoes)),
+  StreamingService = rep(c("Netflix", "Hulu", "Disney", "Prime"),
+                         times = c(n16,h16,d16,p16)))
+
+boxplot(RottenTomatoes ~ StreamingService, data = combine16,
+        col = c("blue", "green", "red", "purple"),
+        main = "Rotten Tomatoes Scores for Age 16+ (Movies and Shows)",
+        ylab = "Rotten Tomatoes Score",
+        par(bg = "#FFF8C1")
+        
+)
+#Adds labels on y axis
+axis(2, at = seq(0, 1, by = 0.05), labels = seq(0, 1, by = 0.05))
+
+#########################################
+#18+
 net18 <- dplyr::filter(net,Age == "18+") #Netflix shows
 hulu18 <- dplyr::filter(hulu,Age == "18+") # Hulu shows
 dis18 <- dplyr::filter(dis,Age == "18+") # Disney shows
 prime18 <- dplyr::filter(prime,Age == "18+") #Prime shows
 
+n18 <- as.numeric(length(unlist(net18$RottenTomatoes))) #netflix
+h18 <- as.numeric(length(unlist(hulu18$RottenTomatoes))) #hulu
+d18 <- as.numeric(length(unlist(dis18$RottenTomatoes))) #disney
+p18 <- as.numeric(length(unlist(prime18$RottenTomatoes))) #prime video
+
+combine18 <- data.frame(
+  RottenTomatoes = c(unlist(net18$RottenTomatoes), unlist(hulu18$RottenTomatoes), 
+                     unlist(dis18$RottenTomatoes), unlist(prime18$RottenTomatoes)),
+  StreamingService = rep(c("Netflix", "Hulu", "Disney", "Prime"),
+                         times = c(n18,h18,d18,p18)))
+
+boxplot(RottenTomatoes ~ StreamingService, data = combine18,
+        col = c("blue", "green", "red", "purple"),
+        main = "Rotten Tomatoes Scores for Age 18+ (Movies and Shows)",
+        ylab = "Rotten Tomatoes Score",
+        par(bg = "#FFF8C1")
+        
+)
+#Adds labels on y axis
+axis(2, at = seq(0, 1, by = 0.05), labels = seq(0, 1, by = 0.05))
+#####################################################
+
+
+
+
 netAll <- dplyr::filter(net,Age == "all") #Netflix shows
 huluAll <- dplyr::filter(hulu,Age == "all") # Hulu shows
 disAll <- dplyr::filter(dis,Age == "all") # Disney shows
 primeAll <- dplyr::filter(prime,Age == "all") #Prime shows
+
+
+nAll <- as.numeric(length(unlist(netAll$RottenTomatoes))) #netflix
+hAll <- as.numeric(length(unlist(huluAll$RottenTomatoes))) #hulu
+dAll <- as.numeric(length(unlist(disAll$RottenTomatoes))) #disney
+pAll <- as.numeric(length(unlist(primeAll$RottenTomatoes))) #prime video
+
+combineAll <- data.frame(
+  RottenTomatoes = c(unlist(netAll$RottenTomatoes), unlist(huluAll$RottenTomatoes), 
+                     unlist(disAll$RottenTomatoes), unlist(primeAll$RottenTomatoes)),
+  StreamingService = rep(c("Netflix", "Hulu", "Disney", "Prime"),
+                         times = c(nAll,hAll,dAll,pAll)))
+
+boxplot(RottenTomatoes ~ StreamingService, data = combineAll,
+        col = c("blue", "green", "red", "purple"),
+        main = "Rotten Tomatoes Scores for Age All (Movies and Shows)",
+        ylab = "Rotten Tomatoes Score",
+        par(bg = "#FFF8C1")
+        
+)
+#Adds labels on y axis
+axis(2, at = seq(0, 1, by = 0.05), labels = seq(0, 1, by = 0.05))
+#####################################################
 
 net7 <- dplyr::filter(net,Age == "7+") #Netflix shows
 hulu7 <- dplyr::filter(hulu,Age == "7+") # Hulu shows
@@ -294,7 +397,6 @@ netNR <- dplyr::filter(net,Age == "NR") #Netflix shows
 huluNR <- dplyr::filter(hulu,Age == "NR") # Hulu shows
 disNR <- dplyr::filter(dis,Age == "NR") # Disney shows
 primeNR <- dplyr::filter(prime,Age == "NR") #Prime shows
-
 
 
 
