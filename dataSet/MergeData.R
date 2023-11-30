@@ -152,8 +152,22 @@ boxplot(RottenTomatoes ~ StreamingService, data = combined_data,
 axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 
 
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+# Filters subsets to only get titles when type ==1
+
+
+
+netShow <- dplyr::filter(net,Type == 1) #Netflix shows
+huluShow <- dplyr::filter(hulu,Type == 1) # Hulu shows
+disShow <- dplyr::filter(dis,Type == 1) # Disney shows
+primeShow <- dplyr::filter(prime,Type == 1) #Prime shows
+
+
+
+
+
 
 #FOR SHOWS ONLY
 
@@ -163,10 +177,7 @@ axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 #This will further filter the data to only include titles with the value 1 for Type
 #When Type == 1 this means it is a show
 
-netShow <- dplyr::filter(net,Type == 1) #Netflix shows
-huluShow <- dplyr::filter(hulu,Type == 1) # Hulu shows
-disShow <- dplyr::filter(dis,Type == 1) # Disney shows
-primeShow <- dplyr::filter(prime,Type == 1) #Prime shows
+
 
 
 
@@ -196,6 +207,13 @@ axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+# Filters subsets to only get titles when type ==0
+
+netMovie <- dplyr::filter(net,Type == 0) #Netflix shows
+huluMovie <- dplyr::filter(hulu,Type == 0) # Hulu shows
+disMovie <- dplyr::filter(dis,Type == 0) # Disney shows
+primeMovie <- dplyr::filter(prime,Type == 0) #Prime shows
+
 
 #FOR MOVIES ONLY
 
@@ -204,10 +222,6 @@ axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 #This will further filter the data to only include titles with the value 0 for Type
 #When Type == 0 this means it is a show
 
-netMovie <- dplyr::filter(net,Type == 0) #Netflix shows
-huluMovie <- dplyr::filter(hulu,Type == 0) # Hulu shows
-disMovie <- dplyr::filter(dis,Type == 0) # Disney shows
-primeMovie <- dplyr::filter(prime,Type == 0) #Prime shows
 
 
 
@@ -224,7 +238,7 @@ movie <- data.frame(
 )
 
 # Create side-by-side boxplots for each streaming service
-#will show the average score of the streaming service
+#will show the average score for movies for each streaming service
 boxplot(RottenTomatoes ~ StreamingService, data = movie,
         col = c("blue", "green", "red", "purple"),
         main = "Rotten Tomatoes Scores for Streaming Services (Movies Only)",
@@ -234,5 +248,177 @@ boxplot(RottenTomatoes ~ StreamingService, data = movie,
 )
 #Adds labels on y axis
 axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#Best AVG SCORE for Age category for Movies/Shows to watch are 13+
+boxplot(unlist(RottenTomatoes) ~ Age, data = dt,
+        col = c("blue", "green", "red", "purple"),
+        main = "Rotten Tomatoes Scores for Age (Movies and Shows)",
+        ylab = "Rotten Tomatoes Score",
+        par(bg = "#FFF8C1")
+        
+)
+#Adds labels on y axis
+axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
+
+
+
+#Age rating subsets for both movies and shows
+
+net13 <- dplyr::filter(net,Age == "13+") #Netflix shows
+hulu13 <- dplyr::filter(hulu,Age == "13+") # Hulu shows
+dis13 <- dplyr::filter(dis,Age == "13+") # Disney shows
+prime13 <- dplyr::filter(prime,Age == "13+") #Prime shows
+
+net16 <- dplyr::filter(net,Age == "16+") #Netflix shows
+hulu16 <- dplyr::filter(hulu,Age == "16+") # Hulu shows
+dis16 <- dplyr::filter(dis,Age == "16+") # Disney shows
+prime16 <- dplyr::filter(prime,Age == "16+") #Prime shows
+
+net18 <- dplyr::filter(net,Age == "18+") #Netflix shows
+hulu18 <- dplyr::filter(hulu,Age == "18+") # Hulu shows
+dis18 <- dplyr::filter(dis,Age == "18+") # Disney shows
+prime18 <- dplyr::filter(prime,Age == "18+") #Prime shows
+
+netAll <- dplyr::filter(net,Age == "all") #Netflix shows
+huluAll <- dplyr::filter(hulu,Age == "all") # Hulu shows
+disAll <- dplyr::filter(dis,Age == "all") # Disney shows
+primeAll <- dplyr::filter(prime,Age == "all") #Prime shows
+
+net7 <- dplyr::filter(net,Age == "7+") #Netflix shows
+hulu7 <- dplyr::filter(hulu,Age == "7+") # Hulu shows
+dis7 <- dplyr::filter(dis,Age == "7+") # Disney shows
+prime7 <- dplyr::filter(prime,Age == "7+") #Prime shows
+
+netNR <- dplyr::filter(net,Age == "NR") #Netflix shows
+huluNR <- dplyr::filter(hulu,Age == "NR") # Hulu shows
+disNR <- dplyr::filter(dis,Age == "NR") # Disney shows
+primeNR <- dplyr::filter(prime,Age == "NR") #Prime shows
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Age rating subsets for shows
+
+net13S <- dplyr::filter(netShow,Age == "13+") #Netflix shows
+hulu13S <- dplyr::filter(huluShow,Age == "13+") # Hulu shows
+dis13S <- dplyr::filter(disShow,Age == "13+") # Disney shows
+prime13S <- dplyr::filter(primeShow,Age == "13+") #Prime shows
+
+net16S <- dplyr::filter(netShow,Age == "16+") #Netflix shows
+hulu16S <- dplyr::filter(huluShow,Age == "16+") # Hulu shows
+dis16S<- dplyr::filter(disShow,Age == "16+") # Disney shows
+prime16S <- dplyr::filter(primeShow,Age == "16+") #Prime shows
+
+net18S <- dplyr::filter(netShow,Age == "18+") #Netflix shows
+hulu18S <- dplyr::filter(huluShow,Age == "18+") # Hulu shows
+dis18S <- dplyr::filter(disShow,Age == "18+") # Disney shows
+prime18S <- dplyr::filter(primeShow,Age == "18+") #Prime shows
+
+netAllS <- dplyr::filter(netShow,Age == "all") #Netflix shows
+huluAllS <- dplyr::filter(huluShow,Age == "all") # Hulu shows
+disAllS <- dplyr::filter(disShow,Age == "all") # Disney shows
+primeAllS <- dplyr::filter(primeShow,Age == "all") #Prime shows
+
+net7S <- dplyr::filter(netShow,Age == "7+") #Netflix shows
+hulu7S <- dplyr::filter(huluShow,Age == "7+") # Hulu shows
+dis7S <- dplyr::filter(disShow,Age == "7+") # Disney shows
+prime7S <- dplyr::filter(primeShow,Age == "7+") #Prime shows
+
+netNRS <- dplyr::filter(netShow,Age == "NR") #Netflix shows
+huluNRS <- dplyr::filter(huluShow,Age == "NR") # Hulu shows
+disNRS <- dplyr::filter(disShow,Age == "NR") # Disney shows
+primeNRS <- dplyr::filter(primeShow,Age == "NR") #Prime shows
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Age rating subsets for movies 
+
+net13M <- dplyr::filter(netMovie,Age == "13+") #Netflix shows
+hulu13M <- dplyr::filter(huluMovie,Age == "13+") # Hulu shows
+dis13M <- dplyr::filter(disMovie,Age == "13+") # Disney shows
+prime13M <- dplyr::filter(primeMovie,Age == "13+") #Prime shows
+
+net16M <- dplyr::filter(netMovie,Age == "16+") #Netflix shows
+hulu16M <- dplyr::filter(huluMovie,Age == "16+") # Hulu shows
+dis16M <- dplyr::filter(disMovie,Age == "16+") # Disney shows
+prime16M <- dplyr::filter(primeMovie,Age == "16+") #Prime shows
+
+net18M <- dplyr::filter(netMovie,Age == "18+") #Netflix shows
+hulu18M <- dplyr::filter(huluMovie,Age == "18+") # Hulu shows
+dis18M <- dplyr::filter(disMovie,Age == "18+") # Disney shows
+prime18M <- dplyr::filter(primeMovie,Age == "18+") #Prime shows
+
+netAllM <- dplyr::filter(netMovie,Age == "all") #Netflix shows
+huluAllM <- dplyr::filter(huluMovie,Age == "all") # Hulu shows
+disAllM <- dplyr::filter(disMovie,Age == "all") # Disney shows
+primeAllM <- dplyr::filter(primeMovie,Age == "all") #Prime shows
+
+net7M <- dplyr::filter(netMovie,Age == "7+") #Netflix shows
+hulu7M <- dplyr::filter(huluMovie,Age == "7+") # Hulu shows
+dis7M <- dplyr::filter(disMovie,Age == "7+") # Disney shows
+prime7M <- dplyr::filter(primeMovie,Age == "7+") #Prime shows
+
+netNRM <- dplyr::filter(netMovie,Age == "NR") #Netflix shows
+huluNRM <- dplyr::filter(huluMovie,Age == "NR") # Hulu shows
+disNRM <- dplyr::filter(disMovie,Age == "NR") # Disney shows
+primeNRM <- dplyr::filter(primeMovie,Age == "NR") #Prime shows
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
