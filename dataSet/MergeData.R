@@ -1,7 +1,6 @@
 
 library(dplyr)
 dt <- read.csv("~/GitHub/CECS-450-SemProj/dataSet/movies_and_tv - Sheet1.csv")
-#dt$group <- (mean(RottenTomatoes))
 
 
 ####################
@@ -58,6 +57,7 @@ net <- dplyr::filter(dt,Netflix == 1)
 
 boxplot(unlist(RottenTomatoes) ~ Type, data = net,
         names = c("Movie","Show"),
+        col = c("#E1A7F5", "#BBF5A7"),
         main = "Show V.S. Movies Average Score on Netflix",
         xlab = "Netflix",
         ylab = "Average score" 
@@ -71,6 +71,7 @@ dis <- dplyr::filter(dt,Disney == 1)
 
 boxplot(unlist(RottenTomatoes) ~ Type, data = dis,
         names = c("Movie","Show"),
+        col = c("#E1A7F5", "#BBF5A7"),
         main = "Show V.S. Movies Average Score on Disney",
         xlab = "Disney+",
         ylab = "Average score" 
@@ -83,6 +84,7 @@ hulu <- dplyr::filter(dt,Hulu == 1)
 
 boxplot(unlist(RottenTomatoes) ~ Type, data = hulu,
         names = c("Movie","Show"),
+        col = c("#E1A7F5", "#BBF5A7"),
         main = "Show V.S. Movies Average Score on Hulu",
         xlab = "Hulu",
         ylab = "Average score" 
@@ -95,6 +97,7 @@ prime <- dplyr::filter(dt,PrimeVideo == 1)
 
 boxplot(unlist(RottenTomatoes) ~ Type, data = prime,
         names = c("Movie","Show"),
+        col = c("#E1A7F5", "#BBF5A7"),
         main = "Show V.S. Movies Average Score on Prime Video",
         xlab = "Prime Video",
         ylab = "Average score" 
@@ -103,25 +106,7 @@ boxplot(unlist(RottenTomatoes) ~ Type, data = prime,
 
 
 
-#
 
-
-
-
-dt$StreamingService <- ifelse(dt$Netflix == 1, "Netflix",
-                              ifelse(dt$Hulu == 1, "Hulu",
-                                     ifelse(dt$Disney == 1, "Disney",
-                                            ifelse(dt$PrimeVideo == 1, "PrimeVideo", "Other"))))
-
-# Create a boxplot for each platform
-
-
-#boxplot(unlist(RottenTomatoes) ~ Netflix, data = net, col = "blue",at = 1, width = 0.2, main = "Rotten Tomatoes Scores for Streaming Services (Value = 1)", ylab = "Rotten Tomatoes Score")
-#boxplot(unlist(RottenTomatoes) ~ Hulu, data = hulu, col = "red",at = 1.75, width = 0.2, add = TRUE)
-#boxplot(unlist(RottenTomatoes) ~ Disney, data = dis, col = "green",at = 2.5, width = 0.2, add = TRUE)
-#boxplot(unlist(RottenTomatoes) ~ PrimeVideo, data = prime, col = "purple", at = 3.5, width = 0.2, add = TRUE)
-#legend("topright", legend = c("Netflix", "Hulu", "Disney", "Prime"), fill = c("blue", "red", "green", "purple"))
-#pdf("boxplot.pdf", width = 10, height = 6)
 ##################################
 
 #BOTH MOVIES AND SHOWS
@@ -176,9 +161,6 @@ primeShow <- dplyr::filter(prime,Type == 1) #Prime shows
 #Uses subset data of already filtered to specific Streaming Services
 #This will further filter the data to only include titles with the value 1 for Type
 #When Type == 1 this means it is a show
-
-
-
 
 
 nS <- as.numeric(length(unlist(netShow$RottenTomatoes))) #netflix
