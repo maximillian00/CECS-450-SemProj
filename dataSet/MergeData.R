@@ -64,6 +64,7 @@ boxplot(unlist(RottenTomatoes) ~ Type, data = net,
         xlab = "Netflix",
         ylab = "Average score" 
 )
+axis(2, at = seq(0.05, 1, by = 0.05), labels = seq(0.05, 1, by = 0.05))
 
 
 #Plots average score shows and movies on Disney
@@ -78,6 +79,7 @@ boxplot(unlist(RottenTomatoes) ~ Type, data = dis,
         xlab = "Disney+",
         ylab = "Average score" 
 )
+axis(2, at = seq(0.05, 1, by = 0.05), labels = seq(0.05, 1, by = 0.05))
 
 
 #Plots average score shows and movies on Hulu
@@ -91,6 +93,8 @@ boxplot(unlist(RottenTomatoes) ~ Type, data = hulu,
         xlab = "Hulu",
         ylab = "Average score" 
 )
+axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
+
 
 #Plots average score shows and movies on Prime Video
 # 0 is movies and 1 is shows 
@@ -104,6 +108,7 @@ boxplot(unlist(RottenTomatoes) ~ Type, data = prime,
         xlab = "Prime Video",
         ylab = "Average score" 
 )
+axis(2, at = seq(0.05, 1, by = 0.05), labels = seq(0.05, 1, by = 0.05))
 
 
 
@@ -229,7 +234,7 @@ movie <- data.frame(
 boxplot(RottenTomatoes ~ StreamingService, data = movie,
         col = c("#16A5E4", "green", "red", "purple"),
         main = "Rotten Tomatoes Scores for Streaming Services (Movies Only)",
-        ylab = "Rotten Tomatoes Score",
+        ylab = "Rotten Tomatoes Score"
 )
 #Adds labels on y axis
 axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
@@ -246,7 +251,7 @@ axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 boxplot(unlist(RottenTomatoes) ~ Age, data = dt,
         col = c("#16A5E4", "green", "red", "purple"),
         main = "Rotten Tomatoes Scores for Age (Movies and Shows)",
-        ylab = "Rotten Tomatoes Score",
+        ylab = "Rotten Tomatoes Score"
 
 )
 #Adds labels on y axis
@@ -275,12 +280,12 @@ combine13 <- data.frame(
 boxplot(RottenTomatoes ~ StreamingService, data = combine13,
         col = c("#16A5E4", "green", "red", "purple"),
         main = "Rotten Tomatoes Scores for Age 13+ (Movies and Shows)",
-        ylab = "Rotten Tomatoes Score",
+        ylab = "Rotten Tomatoes Score"
 
 )
 #Adds labels on y axis
 axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
-  
+
 ##############################################
 #16+
 
@@ -304,11 +309,11 @@ combine16 <- data.frame(
 boxplot(RottenTomatoes ~ StreamingService, data = combine16,
         col = c("#16A5E4", "green", "red", "purple"),
         main = "Rotten Tomatoes Scores for Age 16+ (Movies and Shows)",
-        ylab = "Rotten Tomatoes Score",
+        ylab = "Rotten Tomatoes Score"
 
 )
 #Adds labels on y axis
-axis(2, at = seq(0, 1, by = 0.05), labels = seq(0, 1, by = 0.05))
+axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 
 #########################################
 #18+
@@ -331,11 +336,11 @@ combine18 <- data.frame(
 boxplot(RottenTomatoes ~ StreamingService, data = combine18,
         col = c("#16A5E4", "green", "red", "purple"),
         main = "Rotten Tomatoes Scores for Age 18+ (Movies and Shows)",
-        ylab = "Rotten Tomatoes Score",
+        ylab = "Rotten Tomatoes Score"
 
 )
 #Adds labels on y axis
-axis(2, at = seq(0, 1, by = 0.05), labels = seq(0, 1, by = 0.05))
+axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 #####################################################
 
 
@@ -361,11 +366,11 @@ combineAll <- data.frame(
 boxplot(RottenTomatoes ~ StreamingService, data = combineAll,
         col = c("#16A5E4", "green", "red", "purple"),
         main = "Rotten Tomatoes Scores for Age All (Movies and Shows)",
-        ylab = "Rotten Tomatoes Score",
+        ylab = "Rotten Tomatoes Score"
 
 )
 #Adds labels on y axis
-axis(2, at = seq(0, 1, by = 0.05), labels = seq(0, 1, by = 0.05))
+axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 #####################################################
 
 
@@ -391,11 +396,11 @@ combine7 <- data.frame(
 boxplot(RottenTomatoes ~ StreamingService, data = combine7,
         col = c("#16A5E4", "green", "red", "purple"),
         main = "Rotten Tomatoes Scores for Age 7 (Movies and Shows)",
-        ylab = "Rotten Tomatoes Score",
+        ylab = "Rotten Tomatoes Score"
 
 )
 #Adds labels on y axis
-axis(2, at = seq(0, 1, by = 0.05), labels = seq(0, 1, by = 0.05))
+axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 
 
 
@@ -422,11 +427,11 @@ combineNR <- data.frame(
 boxplot(RottenTomatoes ~ StreamingService, data = combineNR,
         col = c("#16A5E4", "green", "red", "purple"),
         main = "Rotten Tomatoes Scores for Age NR (Movies and Shows)",
-        ylab = "Rotten Tomatoes Score",
+        ylab = "Rotten Tomatoes Score"
 
 )
 #Adds labels on y axis
-axis(2, at = seq(0, 1, by = 0.05), labels = seq(0, 1, by = 0.05))
+axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
 
 
 
