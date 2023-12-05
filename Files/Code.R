@@ -432,6 +432,38 @@ boxplot(RottenTomatoes ~ StreamingService, data = combineNR,
 )
 #Adds labels on y axis
 axis(2, at = seq(0.05, 0.95, by = 0.05), labels = seq(0.05, 0.95, by = 0.05))
+                            
+
+#Labels and values to create pie chart
+labels = c("Prime","Netflix", "Hulu", "Disney")
+amount_on_netflix <- mean(dt$Netflix, na.rm =TRUE)
+amount_on_prime <- mean(dt$PrimeVideo, na.rm =TRUE)
+amount_on_hulu<- mean(dt$Hulu, na.rm =TRUE)
+amount_on_dis <- mean(dt$Disney, na.rm = TRUE)
+percentages <- round((list_of_avgs/sum(list_of_avgs))*100,1)
+list_of_avgs <-c(amount_on_prime, amount_on_netflix, amount_on_hulu, amount_on_dis)
+
+#Pie chart creation
+pie(list_of_avgs, labels = paste(labels, "\n", percentages, "%"), main = "Streaming Service with the Most Titles", col =  c("purple", "red", "green", "blue"))
+
+#Prices of services with and without ads
+prime_price <-9
+
+netflix_ads <-7
+hulu_ads <-8
+disney_ads<- 9
+
+netflix_no_ads<-10
+hulu_no_ads<-15
+disney_no_ads<-14
+
+#vector for prices with ads
+prices_ads <-c(prime_price,netflix_ads, hulu_ads,disney_ads)
+barplot(prices_ads, names.arg = labels, col = c("purple", "red", "green", "blue"), main = "Monthly Price of Streaming Services with Ads", ylab = "Prices(USD)", xlab = "Services", ylim = c(0,10))
+
+#vector for prices without ads
+prices_no_ads <- c(prime_price, netflix_no_ads, hulu_no_ads, disney_no_ads )
+barplot(prices_no_ads, names.arg = labels, col = c("purple", "red", "green", "blue"), main = "Monthly Price of Streaming Services without Ads", ylab = "Prices(USD)", xlab = "Services", ylim = c(0,16))
 
 
 
